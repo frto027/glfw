@@ -1,3 +1,11 @@
+# Pay attention!
+
+This is not the original or official version of [GLFW](https://github.com/glfw/glfw).
+
+特别注意！这并不是[GLFW](https://github.com/glfw/glfw)的原始或官方版本。
+
+我为了满足flyric-daemon程序的部分需求，会改动一些GLFW的源代码来增加想要的功能。
+
 # GLFW
 
 [![Build status](https://travis-ci.org/glfw/glfw.svg?branch=master)](https://travis-ci.org/glfw/glfw)
