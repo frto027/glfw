@@ -246,6 +246,8 @@ static void updateCursorImage(_GLFWwindow* window)
             SetCursor(window->cursor->win32.handle);
         else
             SetCursor(LoadCursorW(NULL, IDC_ARROW));
+    }else if(window->cursorMode == GLFW_CURSOR_IGNORE){
+        //do nothing
     }
     else
         SetCursor(NULL);
@@ -403,6 +405,14 @@ static void updateFramebufferTransparency(const _GLFWwindow* window)
             //       plus negative region.
             LONG exStyle = GetWindowLongW(window->win32.handle, GWL_EXSTYLE);
             exStyle |= WS_EX_LAYERED;
+
+            //this is for mouse transparent
+            if(window->cursorMode == GLFW_CURSOR_IGNORE){
+                exStyle |= WS_EX_TRANSPARENT;
+            }else{
+                exStyle &= ~WS_EX_TRANSPARENT;
+            }
+
             SetWindowLongW(window->win32.handle, GWL_EXSTYLE, exStyle);
 
             // Using a color key not equal to black to fix the trailing
@@ -1855,7 +1865,15 @@ float _glfwPlatformGetWindowOpacity(_GLFWwindow* window)
 
     return 1.f;
 }
+void _glfwPlatformSetWindowTransparentFrameBuffer(_GLFWwindow * window, GLFWbool enabled){
+    if(enabled){
+        updateFramebufferTransparency(window);
+        window->win32.transparent = GLFW_TRUE;
+    }else{
+        //how to do it?
+    }
 
+}
 void _glfwPlatformSetWindowOpacity(_GLFWwindow* window, float opacity)
 {
     if (opacity < 1.f)
@@ -2019,6 +2037,9 @@ void _glfwPlatformSetCursorMode(_GLFWwindow* window, int mode)
         enableCursor(window);
     else if (cursorInContentArea(window))
         updateCursorImage(window);
+    if(window->win32.transparent){//mouse transparent only when frame buffer is transparent
+        updateFramebufferTransparency(window);
+    }
 }
 
 const char* _glfwPlatformGetScancodeName(int scancode)

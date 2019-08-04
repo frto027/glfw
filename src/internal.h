@@ -670,6 +670,7 @@ void _glfwPlatformSetWindowResizable(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowDecorated(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowFloating(_GLFWwindow* window, GLFWbool enabled);
 void _glfwPlatformSetWindowOpacity(_GLFWwindow* window, float opacity);
+void _glfwPlatformSetWindowTransparentFrameBuffer(_GLFWwindow * window, GLFWbool enabled);
 
 void _glfwPlatformPollEvents(void);
 void _glfwPlatformWaitEvents(void);

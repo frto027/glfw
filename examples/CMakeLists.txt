@@ -39,6 +39,7 @@ add_executable(sharing WIN32 MACOSX_BUNDLE sharing.c ${ICON} ${GLAD_GL})
 add_executable(simple WIN32 MACOSX_BUNDLE simple.c ${ICON} ${GLAD_GL})
 add_executable(splitview WIN32 MACOSX_BUNDLE splitview.c ${ICON} ${GLAD_GL})
 add_executable(wave WIN32 MACOSX_BUNDLE wave.c ${ICON} ${GLAD_GL})
+add_executable(wintrans WIN32 wintrans.c ${ICON} ${GLAD_GL})
 
 target_link_libraries(particles "${CMAKE_THREAD_LIBS_INIT}")
 if (RT_LIBRARY)

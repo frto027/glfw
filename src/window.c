@@ -895,6 +895,8 @@ GLFWAPI void glfwSetWindowAttrib(GLFWwindow* handle, int attrib, int value)
     }
     else if (attrib == GLFW_FOCUS_ON_SHOW)
         window->focusOnShow = value;
+    else if(attrib == GLFW_TRANSPARENT_FRAMEBUFFER)
+        _glfwPlatformSetWindowTransparentFrameBuffer(window, value);
     else
         _glfwInputError(GLFW_INVALID_ENUM, "Invalid window attribute 0x%08X", attrib);
 }
